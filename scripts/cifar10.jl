@@ -1,7 +1,7 @@
 using JLD
 using MLDatasets
 
-include("../src/training.jl")
+#include("../src/training.jl")
 
 # load full training set
 train_x, train_y = CIFAR10.traindata(Float32)
@@ -10,13 +10,14 @@ test_x,  test_y  = CIFAR10.testdata(Float32);
 
 ytrain =  Flux.onehotbatch(train_y, 0:9);
 
-#tws = round.(Int64,(exp10.(range(0, stop = log10(500000), length = 20))));
-#deltats = Int64.(ceil.(exp10.(range(0, stop = 6, length = 50))));
+tws = round.(Int64,(exp10.(range(0, stop = log10(500000), length = 28))));
+deltats = Int64.(ceil.(exp10.(range(0, stop = 6, length = 35))));
 
-tws = round.(Int64,(exp10.(range(0, stop = log10(500), length = 10))));
-deltats = Int64.(ceil.(exp10.(range(0, stop = 3, length = 15))));
+#tws = round.(Int64,(exp10.(range(0, stop = log10(500), length = 10))));
+#deltats = Int64.(ceil.(exp10.(range(0, stop = 3, length = 15))));
 
 
+###Baity-Jesi's SmallNet
 model = Chain(
   Conv((5,5), 3=>10, relu),
     MaxPool((2,2)),
